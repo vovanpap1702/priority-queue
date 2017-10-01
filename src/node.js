@@ -9,11 +9,11 @@ class Node {
 	}
 
 	appendChild(node) {
-		if (node.data<this.data) {
-			this.left=node.data;
+		if (this.left===undefined) {
+			this.left=node;
 		}
-		if (node.data>this.data) {
-            this.right=node.data;
+		else if (this.left!==undefined&&this.right===undefined) {
+            this.right=node;
 		}
 
 	}
