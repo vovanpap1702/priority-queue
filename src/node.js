@@ -9,10 +9,10 @@ class Node {
 	}
 
 	appendChild(node) {
-		if (this.left===undefined) {
+		if (this.left===null) {
 			this.left=node;
 		}
-		else if (this.left!==undefined&&this.right===undefined) {
+		else if (this.left!==null&&this.right===null) {
             this.right=node;
 		}
 
