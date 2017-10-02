@@ -11,9 +11,11 @@ class Node {
 	appendChild(node) {
 		if (this.left===null) {
 			this.left=node;
+			this.left.parent=this;
 		}
 		else if (this.left!==null&&this.right===null) {
             this.right=node;
+            this.right.parent=this;
 		}
 
 	}
@@ -34,6 +36,7 @@ class Node {
 	}
 
 	remove() {
+		this.parent=null;
 
 	}
 
