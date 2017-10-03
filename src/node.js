@@ -39,9 +39,8 @@ class Node {
 
 	remove() {
 		if(this.parent!==null) {
-            this.parent = null;
-            this.removeChild();
-            this.removeChild();
+            this.parent.removeChild(this);
+           	this.parent=null;
         }
 
 	}
