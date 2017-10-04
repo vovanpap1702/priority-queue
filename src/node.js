@@ -103,10 +103,12 @@ class Node {
                 }
             }
             if ((pl!==null)&&(t.priority===pl.priority&&t.data==pl.data)) {
+               t.parent=p.parent;
                 pl=p;
             }
             if ((pr!==null)&&(t.priority===pr.priority&&t.data==pr.data)) {
-                pr=p;
+                t.parent=p.parent;
+				pr=p;
             }
             t.left=pl;
 			if(t.left!==null)
@@ -143,6 +145,16 @@ class Node {
 		}
 
 }
+const parentOfParent = new Node(100, 500);
+const parent = new Node(15, 42);
+const child = new Node(42, 15);
+
+parentOfParent.appendChild(parent);
+parent.appendChild(child);
+child.swapWithParent();
+
+console.log(child.parent===parentOfParent);
+
 /*const node = new Node(15, 42);
 node.swapWithParent();
 
