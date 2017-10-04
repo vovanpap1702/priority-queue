@@ -123,37 +123,29 @@ class Node {
 			if(p.right!==null)
 				p.right.parent=p;
             }
-           /* t.appendChild(pl);
-            t.appendChild(pr);
-            p.appendChild(l);
-            p.appendChild(r);
-        	*//*/!*const pr=this.right;
-        	const pl=this.left;
-            const p=this.parent;*!/
-           /!* const pp=this.parent.parent;
-            const cl=this.left;
-            const cr=this.right;*!/
-            this.parent.data=this.data;
-            this.parent.priority=this.priority;
-            this.parent.removeChild(this);
-            //this.parent.left=this.left;//good
-           // this.parent.right=this.right;//good
-            this.parent.appendChild(p);
-            p.left=pr;
-            p.right=pl;
-*/
+
 		}
 
 }
-const parentOfParent = new Node(100, 500);
-const parent = new Node(15, 42);
-const child = new Node(42, 15);
+const root = new Node(15, 42);
+const left = new Node(42, 15);
+const right = new Node(13, 42);
+const childOfLeft = new Node(13, 34);
+const childOfRight = new Node(0, 1);
 
-parentOfParent.appendChild(parent);
-parent.appendChild(child);
-child.swapWithParent();
+root.appendChild(left);
+root.appendChild(right);
+left.appendChild(childOfLeft);
+right.appendChild(childOfRight);
 
-console.log(child.parent===parentOfParent);
+childOfLeft.swapWithParent();
+childOfRight.swapWithParent();
+console.log(root.left);
+console.log('\n');
+//console.log(childOfLeft);
+console.log(root.left===childOfLeft);
+console.log(root.right===childOfRight);
+
 
 /*const node = new Node(15, 42);
 node.swapWithParent();
