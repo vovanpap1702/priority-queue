@@ -91,7 +91,7 @@ class Node {
 		}
 		
 	}
-}
+}/*
 const node = new Node(15, 42);
 node.swapWithParent();
 
@@ -101,7 +101,7 @@ const child = new Node(42, 15);
 parent.appendChild(child);
 child.swapWithParent();
 
-console.log(parent.parent===child);
+console.log(parent.parent===child);*/
 /*
 
 
