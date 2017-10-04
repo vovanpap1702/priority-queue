@@ -19,11 +19,6 @@ class Node {
 		}
 
 	}
-	appendParent(node)
-	{
-
-
-	}
 
 	removeChild(node) {
 		if(node.data===this.left.data&&
@@ -59,12 +54,6 @@ class Node {
             var l=this.left;
             var r=this.right;
            	t.parent=p.parent;
-           	if ((pl!==null)&&(t.priority===pl.priority&&t.data==pl.data)) {
-           		pl=p;
-			}
-			if ((pr!==null)&&(t.priority===pr.priority&&t.data==pr.data)) {
-           		pr=p;
-			}
 			if(pr!==null) {
                 if (p.left!==null&&pr.data === p.left.data &&
                     pr.priority === p.left.priority) {
@@ -113,11 +102,30 @@ class Node {
                     t.right = null;
                 }
             }
-            t.appendChild(pl);
+            if ((pl!==null)&&(t.priority===pl.priority&&t.data==pl.data)) {
+                pl=p;
+            }
+            if ((pr!==null)&&(t.priority===pr.priority&&t.data==pr.data)) {
+                pr=p;
+            }
+            t.left=pl;
+			if(t.left!==null)
+				t.left.parent=t;
+			t.right=pr;
+            if(t.right!==null)
+				t.right.parent=t;
+			p.left=l;
+			if(p.left!==null)
+				p.left.parent=p;
+			p.right=r;
+			if(p.right!==null)
+				p.right.parent=p;
+            }
+           /* t.appendChild(pl);
             t.appendChild(pr);
             p.appendChild(l);
             p.appendChild(r);
-        	/*/!*const pr=this.right;
+        	*//*/!*const pr=this.right;
         	const pl=this.left;
             const p=this.parent;*!/
            /!* const pp=this.parent.parent;
@@ -133,9 +141,8 @@ class Node {
             p.right=pl;
 */
 		}
-		
-	}
-}/*
+
+}
 const node = new Node(15, 42);
 node.swapWithParent();
 
@@ -145,7 +152,7 @@ const child = new Node(42, 15);
 parent.appendChild(child);
 child.swapWithParent();
 
-console.log(parent.parent===child);*/
+console.log(parent.parent===child);
 /*
 
 
