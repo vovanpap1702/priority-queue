@@ -47,6 +47,40 @@ class Node {
 
 	swapWithParent() {
         if(this.parent!==null&&this!==null) {
+        	if(this.parent.parent!==null)
+			{
+				if(this.parent.parent.left!==null) {
+                    if(this.parent.parent.left.left!==null) {
+                    	if(this.parent.parent.left.left.data===this.data&&
+                            this.parent.parent.left.left.priority===this.priority) {
+                    		this.parent.parent.left=this;
+						}
+
+                    }
+                    if(this.parent.parent.left.right!==null) {
+                        if(this.parent.parent.left.right.data===this.data&&
+                            this.parent.parent.left.right.priority===this.priority) {
+                            this.parent.parent.left=this;
+                        }
+
+                    }
+				}
+				if(this.parent.parent.right!==null) {
+                    if(this.parent.parent.right.left!==null) {
+                        if(this.parent.parent.right.left.data===this.data&&
+                            this.parent.parent.right.left.priority===this.priority) {
+                            this.parent.parent.right=this;
+                        }
+                    }
+                    if(this.parent.parent.right.right!==null) {
+                        if(this.parent.parent.right.right.data===this.data&&
+                            this.parent.parent.right.right.priority===this.priority) {
+                            this.parent.parent.right=this;
+                        }
+                    }
+
+				}
+			}
         	var t=this;
         	var p=this.parent;
             var pr=this.parent.right;
@@ -132,29 +166,42 @@ const left = new Node(42, 15);
 const right = new Node(13, 42);
 const childOfLeft = new Node(13, 34);
 const childOfRight = new Node(0, 1);
-
 root.appendChild(left);
 root.appendChild(right);
 left.appendChild(childOfLeft);
 right.appendChild(childOfRight);
+console.log("\t\t\t"+root.data);
+console.log("\t"+root.left.data+'\t\t\t\t'+root.right.data);
+console.log(root.left.left.data+'\t\t\t\t'+root.right.left.data);
 
 childOfLeft.swapWithParent();
+console.log("\t\t\t"+root.data);
+console.log("\t"+root.left.data+'\t\t\t\t'+root.right.data);
+console.log(root.left.left.data+'\t\t\t\t'+root.right.left.data);
 childOfRight.swapWithParent();
-console.log(root.left);
+
+console.log("\t\t\t"+root.data);
+console.log("\t"+root.left.data+'\t\t\t\t'+root.right.data);
+console.log(root.left.left.data+'\t\t\t\t'+root.right.left.data);
+//console.log(root.left);
 console.log('\n');
 //console.log(childOfLeft);
 console.log(root.left===childOfLeft);
 console.log(root.right===childOfRight);
 
-
-/*const node = new Node(15, 42);
+/*
+const node = new Node(15, 42);
 node.swapWithParent();
 
 const parent = new Node(15, 42);
 const child = new Node(42, 15);
-
+console.log(parent.data+'\n');
+console.log(child.data+'\n');
 parent.appendChild(child);
 child.swapWithParent();
+console.log(parent.data+'\n');
+console.log(child.data+'\n');
+
 
 console.log(parent.parent===child);*/
 /*
