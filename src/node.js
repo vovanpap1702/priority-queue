@@ -51,13 +51,34 @@ class Node {
 	}
 
 	swapWithParent() {
-        if(this.parent!==null) {
-        	const pr=this.right;
+        if(this.parent!==null&&this!==null) {
+        	var t=this;
+        	var p=this.parent;
+            var pr=this.parent.right;
+            var pl=this.parent.left;
+            var l=this.left;
+            var r=this.right;
+           	t.parent=p.parent;
+           	if (t.priority===pl.priority&&t.data==pl.data) {
+           		pl=p;
+			}
+			if (t.priority===pr.priority&&t.data==pr.data) {
+           		pr=p;
+			}
+            p.removeChild(pr);
+            p.removeChild(pl);
+            t.removeChild(r);
+            t.removeChild(l);
+            t.appendChild(pl);
+            t.appendChild(pr);
+            p.appendChild(l);
+            p.appendChild(r);
+        	/*/!*const pr=this.right;
         	const pl=this.left;
-            const p=this.parent;
-           /* const pp=this.parent.parent;
+            const p=this.parent;*!/
+           /!* const pp=this.parent.parent;
             const cl=this.left;
-            const cr=this.right;*/
+            const cr=this.right;*!/
             this.parent.data=this.data;
             this.parent.priority=this.priority;
             this.parent.removeChild(this);
@@ -66,7 +87,7 @@ class Node {
             this.parent.appendChild(p);
             p.left=pr;
             p.right=pl;
-
+*/
 		}
 		
 	}
