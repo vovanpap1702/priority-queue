@@ -59,16 +59,60 @@ class Node {
             var l=this.left;
             var r=this.right;
            	t.parent=p.parent;
-           	if (t.priority===pl.priority&&t.data==pl.data) {
+           	if ((pl!==null)&&(t.priority===pl.priority&&t.data==pl.data)) {
            		pl=p;
 			}
-			if (t.priority===pr.priority&&t.data==pr.data) {
+			if ((pr!==null)&&(t.priority===pr.priority&&t.data==pr.data)) {
            		pr=p;
 			}
-            p.removeChild(pr);
-            p.removeChild(pl);
-            t.removeChild(r);
-            t.removeChild(l);
+			if(pr!==null) {
+                if (p.left!==null&&pr.data === p.left.data &&
+                    pr.priority === p.left.priority) {
+                    p.left.parent = null;
+                    p.left = null;
+                }
+                else if (p.right!==null&&pr.data === p.right.data &&
+                    pr.priority === p.right.priority) {
+                    p.right.parent = null;
+                    p.right = null;
+                }
+            }
+            if(pl!==null) {
+                if (p.left!==null&&pl.data === p.left.data &&
+                    pl.priority === p.left.priority) {
+                    p.left.parent = null;
+                    p.left = null;
+                }
+                else if (p.right!==null&&pl.data === p.right.data &&
+                    pl.priority === p.right.priority) {
+                    p.right.parent = null;
+                    p.right = null;
+                }
+            }
+            if(r!==null) {
+                if (t.left!==null&&r.data === t.left.data &&
+                    r.priority === t.left.priority) {
+                    t.left.parent = null;
+                    t.left = null;
+                }
+                else if (t.right!==null&&r.data === t.right.data &&
+                    r.priority === t.right.priority) {
+                    t.right.parent = null;
+                    t.right = null;
+                }
+            }
+            if(l!==null) {
+                if (t.left!==null&&l.data === t.left.data &&
+                    l.priority === t.left.priority) {
+                    t.left.parent = null;
+                    t.left = null;
+                }
+                else if (t.right!==null&&l.data === t.right.data &&
+                    l.priority === t.right.priority) {
+                    t.right.parent = null;
+                    t.right = null;
+                }
+            }
             t.appendChild(pl);
             t.appendChild(pr);
             p.appendChild(l);
