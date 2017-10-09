@@ -3,14 +3,14 @@ const MaxHeap = require('./max-heap.js');
 class PriorityQueue {
 	constructor(maxSize)
 	{
-		if(maxSize.isNumber()===false) {
-            this.pq = new Node[30];
+		if(isNaN(maxSize)===true) {
             this.maxSize=30;
         }
 		else {
-            this.pq = new Node[maxSize];
             this.maxSize=maxSize;
         }
+        this.pq = [];
+		this.heap=new MaxHeap();
 	}
 
 	push(data, priority) {
@@ -29,5 +29,12 @@ class PriorityQueue {
 		
 	}
 }
+/*
+const q = new Queue(10);
+const qWithDefaultMaxSize = new Queue();
+
+console.log(q.maxSize===10);
+console.log(qWithDefaultMaxSize.maxSize===30);
+*/
 
 module.exports = PriorityQueue;
