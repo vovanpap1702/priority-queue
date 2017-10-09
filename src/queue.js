@@ -36,7 +36,7 @@ class PriorityQueue {
 	}
 
 	isEmpty() {
-		return this.ct>0?true:false;
+		return this.ct===0?true:false;
 	}
 }
 /*
