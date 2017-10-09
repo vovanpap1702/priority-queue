@@ -27,7 +27,13 @@ class PriorityQueue {
 	}
 
 	shift() {
-	    this.ct--;
+	    if(this.isEmpty()) {
+	        throw new Error();
+        }
+        else {
+            this.ct--;
+            return this.heap.pop();
+        }
 
 	}
 
