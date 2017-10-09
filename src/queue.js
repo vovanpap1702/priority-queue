@@ -27,15 +27,16 @@ class PriorityQueue {
 	}
 
 	shift() {
+	    this.ct--;
 
 	}
 
 	size() {
-		return this.maxSize;
+		return this.ct;
 	}
 
 	isEmpty() {
-		return this.maxSize>0?true:false;
+		return this.ct>0?true:false;
 	}
 }
 /*
