@@ -48,22 +48,23 @@ class MaxHeap {
 		}
 		else
 		{
-            parentNodes.push(node);
-            var i;
-            for( i=0;(2*i+1)!=this.parentNodes.length-1||
-			(2*i+2)!=this.parentNodes.length-1;i++);
-            if(this.parentNodes.length-1===(2*i+1)) {
-            	this.parentNodes[i].left=node;
-			}
-            if(this.parentNodes.length-1===(2*i+2)) {
-                this.parentNodes[i].right=node;
+            for(var i=0;i<this.parentNodes.length;i++) {
+                if (this.parentNodes.length === (2 * i + 1)) {
+                    this.parentNodes[i].appendChild(node);
+                    node.parent=this.parentNodes[i];
+                    node.parent.left=node;
+                    break;
+                }
+                if (this.parentNodes.length === (2 * i + 2)) {
+                    this.parentNodes[i].appendChild(node);
+                    node.parent=this.parentNodes[i];
+                    node.parent.right=node;
+                    break;
+                }
             }
-
+			this.parentNodes.push(node);
 		}
-
-		
 	}
-
 	shiftNodeUp(node) {
 		
 	}
@@ -73,4 +74,23 @@ class MaxHeap {
 	}
 }
 
+var h = new MaxHeap();
+    const nodes = [
+        new Node(0, 0),
+        new Node(1, 1),
+        new Node(2, 2),
+        new Node(3, 3),
+        new Node(4, 4),
+        new Node(5, 5),
+        new Node(6, 6),
+    ];
+for(var i=0;i<nodes.length;i++) {
+	h.insertNode(nodes[i]);
+}
+
+/*console.log(h.root===nodes[0]);
+console.log(h.root.left);*/
+/*console.log(h.root.right);
+console.log(h.root.left.left);
+console.log(h.root.left.right);*/
 module.exports = MaxHeap;
