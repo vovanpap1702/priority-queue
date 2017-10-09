@@ -25,11 +25,13 @@ class MaxHeap {
 	}
 
 	size() {
-		
+		if(!this.isEmpty()) {
+			return this.parentNodes.length+1;
+        }
 	}
 
 	isEmpty() {
-		return
+		return this.root===null?true:false;
 	}
 
 	clear() {
