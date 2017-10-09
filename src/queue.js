@@ -31,11 +31,11 @@ class PriorityQueue {
 	}
 
 	size() {
-		return this.pq.length;
+		return this.maxSize;
 	}
 
 	isEmpty() {
-		
+		return this.maxSize>0?true:false;
 	}
 }
 /*
