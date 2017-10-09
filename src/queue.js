@@ -15,7 +15,7 @@ class PriorityQueue {
 	}
 
 	push(data, priority) {
-	    if(this.ct<=this.maxSize) {
+	    if(this.ct<this.maxSize) {
             this.heap.push(data, priority);
             this.ct++;
         }
