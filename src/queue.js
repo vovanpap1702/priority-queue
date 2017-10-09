@@ -10,10 +10,19 @@ class PriorityQueue {
             this.maxSize=maxSize;
         }
         this.pq = [];
+		this.ct=0;
 		this.heap=new MaxHeap();
 	}
 
 	push(data, priority) {
+	    if(this.ct<=this.maxSize) {
+            this.heap.push(data, priority);
+            this.ct++;
+        }
+        else
+        {
+            throw new Error();
+        }
 
 	}
 
