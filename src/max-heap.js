@@ -5,11 +5,13 @@ class MaxHeap {
 	{
 		this.root=null;
 		this.parentNodes=[];
-		this.heap=[];
+		//this.heap=[];
 	}
 
 	push(data, priority) {
-		
+		var tmp=new Node(data,priority);
+		this.insertNode(tmp);
+		this.shiftNodeUp(tmp);
 	}
 
 	pop() {
