@@ -53,14 +53,12 @@ class MaxHeap {
 		{
 			this.parentNodes[0].appendChild(node);
 			this.parentNodes.push(node);
-			if(this)
+			if(this.parentNodes[0].right!==null) {
 				var tmp=[];
 				for(var i=1;i<this.parentNodes.length;i++) {
 					tmp.push(this.parentNodes[i]);
 				}
 				this.parentNodes=tmp;
-                this.parentNodes[0].appendChild(node);
-                this.parentNodes.push(node);
 			}
             /*for(var i=0;i<this.nodes.length;i++) {
                 if (this.nodes.length === (2 * i + 1)) {
@@ -105,7 +103,7 @@ h.insertNode(nodes[1]);
 console.log(h.parentNodes[0]===nodes[0]);
 console.log(h.parentNodes[1]===nodes[1]);
 
-6h.insertNode(nodes[2]);
+h.insertNode(nodes[2]);
 console.log(h.parentNodes[0]===nodes[1]);
 console.log(h.parentNodes[1]===nodes[2]);
 
