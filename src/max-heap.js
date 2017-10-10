@@ -78,6 +78,14 @@ class MaxHeap {
 		}
 	}
 	shiftNodeUp(node) {
+		while(node.parent!==null&&node.priority>node.parent.priority)
+		{
+			node.swapWithParent();
+			if(node.parent ===null)
+			{
+				this.root=node;
+			}
+		}
 		
 	}
 
@@ -86,47 +94,18 @@ class MaxHeap {
 	}
 }
 var h = new MaxHeap();
-const nodes = [
-    new Node(0, 0),
-    new Node(1, 1),
-    new Node(2, 2),
-    new Node(3, 3),
-    new Node(4, 4),
-    new Node(5, 5),
-    new Node(6, 6),
+
+h.root = new Node(0, 10);
+h.root.appendChild(new Node(1, 5));
+h.root.appendChild(new Node(2, 7));
+h.root.left.appendChild(new Node(3, 20));
+h.parentNodes = [
+    h.root.left,
+    h.root.right,
+    h.root.left.left,
 ];
-
-h.insertNode(nodes[0]);
-console.log(h.parentNodes[0]===nodes[0]);
-
-h.insertNode(nodes[1]);
-console.log(h.parentNodes[0]===nodes[0]);
-console.log(h.parentNodes[1]===nodes[1]);
-
-h.insertNode(nodes[2]);
-console.log(h.parentNodes[0]===nodes[1]);
-console.log(h.parentNodes[1]===nodes[2]);
-
-h.insertNode(nodes[3]);
-console.log(h.parentNodes[0]===nodes[1]);
-console.log(h.parentNodes[1]===nodes[2]);
-console.log(h.parentNodes[2]===nodes[3]);
-
-h.insertNode(nodes[4]);
-console.log(h.parentNodes[0]===nodes[2]);
-console.log(h.parentNodes[1]===nodes[3]);
-console.log(h.parentNodes[2]===nodes[4]);
-
-h.insertNode(nodes[5]);
-console.log(h.parentNodes[0]===nodes[2]);
-console.log(h.parentNodes[1]===nodes[3]);
-console.log(h.parentNodes[2]===nodes[4]);
-console.log(h.parentNodes[3]===nodes[5]);
-
-h.insertNode(nodes[6]);
-console.log(h.parentNodes[0]===nodes[3]);
-console.log(h.parentNodes[1]===nodes[4]);
-console.log(h.parentNodes[2]===nodes[5]);
-console.log(h.parentNodes[3]===nodes[6]);
+/*const newRoot = h.root.left.left;
+h.shiftNodeUp(h.root.left.left);
+console.log(h.root===newRoot);*/
 
 module.exports = MaxHeap;
