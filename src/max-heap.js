@@ -80,6 +80,23 @@ class MaxHeap {
 	shiftNodeUp(node) {
 		while(node.parent!==null&&node.priority>node.parent.priority)
 		{
+            for(var i=0;i<this.parentNodes.length;i++) {
+                if(this.parentNodes[i]===node) {
+                    for(var j=0;j<this.parentNodes.length;j++) {
+                            if(node.parent===this.root) {
+                                this.parentNodes[i] = node.parent;
+                            }
+                            else {
+                                if(this.parentNodes[j]===node.parent) {
+                                var tmp = this.parentNodes[i];
+                                this.parentNodes[i] = this.parentNodes[j];
+                                this.parentNodes[j] = tmp;
+                                break;
+                            }
+						}
+                    }
+				}
+            }//this.parentNodes[i].swapWithParent();
 			node.swapWithParent();
 			if(node.parent ===null)
 			{
@@ -104,8 +121,17 @@ h.parentNodes = [
     h.root.right,
     h.root.left.left,
 ];
-/*const newRoot = h.root.left.left;
+const correctParentNodesOrderAfterShiftUp = [
+    h.root,
+    h.root.right,
+    h.root.left
+]
+
 h.shiftNodeUp(h.root.left.left);
-console.log(h.root===newRoot);*/
+
+console.log(h.parentNodes[0]===correctParentNodesOrderAfterShiftUp[0]);
+console.log(h.parentNodes[1]===correctParentNodesOrderAfterShiftUp[1]);
+console.log(h.parentNodes[2]===correctParentNodesOrderAfterShiftUp[2]);
+
 
 module.exports = MaxHeap;
