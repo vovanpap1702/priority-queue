@@ -30,6 +30,8 @@ class MaxHeap {
 	restoreRootFromLastInsertedNode(detached) {
 		var tmp=this.parentNodes.pop();
 		this.root=tmp;
+		this.root.left=detached.left;
+		this.root.right=detached.right;
 		
 	}
 
