@@ -111,7 +111,7 @@ class MaxHeap {
                 if (this.parentNodes[i] === node) {
                     for (var j = 0; j < this.parentNodes.length; j++) {
                         if (node.parent === this.root) {
-                            this.parentNodes[j] = node;
+                            this.parentNodes[j] = node.parent;
                             break;
                         }
                         else {
@@ -137,21 +137,29 @@ class MaxHeap {
 		
 	}
 }
-var h = new MaxHeap();
+h = new MaxHeap();
 
-h.push(42, 15);
-h.push(14, 32);
-h.push(0, 0);
-const lastInsertedNode = h.root.right;
-const left = h.root.left;
+h.root = new Node(0, 10);
+h.root.appendChild(new Node(1, 5));
+h.root.appendChild(new Node(2, 7));
+h.root.left.appendChild(new Node(3, 20));
 
-const detached = h.detachRoot();
-h.restoreRootFromLastInsertedNode(detached);
-//console.log(h);
-console.log(h.root===lastInsertedNode);
+h.parentNodes = [
+    h.root.left,
+    h.root.right,
+    h.root.left.left,
+];
+const correctParentNodesOrderAfterShiftUp = [
+    h.root,
+    h.root.right,
+    h.root.left
+]
 
-console.log(h.root.left===left);
-console.log(left.parent===lastInsertedNode);
+h.shiftNodeUp(h.root.left.left);
+
+console.log(h.parentNodes[0]===correctParentNodesOrderAfterShiftUp[0]);
+console.log(h.parentNodes[1]===correctParentNodesOrderAfterShiftUp[1]);
+console.log(h.parentNodes[2]===correctParentNodesOrderAfterShiftUp[2]);
 
 
 module.exports = MaxHeap;
