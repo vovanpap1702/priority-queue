@@ -29,16 +29,31 @@ class MaxHeap {
 	}
 
 	restoreRootFromLastInsertedNode(detached) {
-		var tmp=this.parentNodes.pop();
-		//console.log(detached.right);
+	    var tmp=this.parentNodes.pop();
+		/*this.root=new Node(tmp.data,tmp.priority)
+       // this.root.appendChild(detached.left);
+		//this.root.appendChild(detached.right);
+        this.root.parent=null;
+        this.root.right=detached.right;
+        this.root.left=detached.left;
+        this.root.left.parent=this.root;
+		this.root.right.parent=this.root;*/
+
 		tmp.left=detached.left;
 		tmp.right=detached.right;
-		tmp.parent=null;
+		tmp.right.parent=tmp;
+		tmp.left.parent=tmp;
+        if(tmp.parent.left===tmp) {
+            tmp.parent.left=null;
+        }
+        else {
+            tmp.parent.right=null;
+        }
+        tmp.parent=null;
 		this.root=tmp;
-		//this.root.left=detached.left;
-        this.root.left.parent=tmp;
-		//this.root.right=detached.right;
-		this.root.right.parent=tmp;
+
+		//tmp=this.root;
+
 		
 	}
 
@@ -131,11 +146,12 @@ const lastInsertedNode = h.root.right;
 const left = h.root.left;
 
 const detached = h.detachRoot();
-//console.log(detached);
 h.restoreRootFromLastInsertedNode(detached);
-console.log(h);
+//console.log(h);
 console.log(h.root===lastInsertedNode);
+
 console.log(h.root.left===left);
 console.log(left.parent===lastInsertedNode);
+
 
 module.exports = MaxHeap;
