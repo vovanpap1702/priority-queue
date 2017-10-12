@@ -38,11 +38,16 @@ class MaxHeap {
         this.root.left=detached.left;
         this.root.left.parent=this.root;
 		this.root.right.parent=this.root;*/
-
 		tmp.left=detached.left;
 		tmp.right=detached.right;
-		tmp.right.parent=tmp;
-		tmp.left.parent=tmp;
+		if(tmp.left!==null)
+        {
+            tmp.left.parent=tmp;
+        }
+        if(detached.right!==null)
+        {
+            tmp.right.parent=tmp;
+        }
         if(tmp.parent.left===tmp) {
             tmp.parent.left=null;
         }
@@ -50,8 +55,7 @@ class MaxHeap {
             tmp.parent.right=null;
         }
         tmp.parent=null;
-		this.root=tmp;
-
+        this.root=tmp;
 		//tmp=this.root;
 
 		
@@ -111,7 +115,7 @@ class MaxHeap {
                 if (this.parentNodes[i] === node) {
                     for (var j = 0; j < this.parentNodes.length; j++) {
                         if (node.parent === this.root) {
-                            this.parentNodes[j] = node.parent;
+                            this.parentNodes[j] = node;
                             break;
                         }
                         else {
@@ -137,29 +141,20 @@ class MaxHeap {
 		
 	}
 }
-h = new MaxHeap();
 
-h.root = new Node(0, 10);
-h.root.appendChild(new Node(1, 5));
-h.root.appendChild(new Node(2, 7));
-h.root.left.appendChild(new Node(3, 20));
+var h = new MaxHeap();
 
-h.parentNodes = [
-    h.root.left,
-    h.root.right,
-    h.root.left.left,
-];
-const correctParentNodesOrderAfterShiftUp = [
-    h.root,
-    h.root.right,
-    h.root.left
-]
-
-h.shiftNodeUp(h.root.left.left);
-
-console.log(h.parentNodes[0]===correctParentNodesOrderAfterShiftUp[0]);
-console.log(h.parentNodes[1]===correctParentNodesOrderAfterShiftUp[1]);
-console.log(h.parentNodes[2]===correctParentNodesOrderAfterShiftUp[2]);
-
+h.push(42, 15);
+h.push(14, 32);
+h.push(0, 0);
+const lastInsertedNode = h.root.right;
+const left = h.root.left;
+console.log(h);
+const detached = h.detachRoot();
+h.restoreRootFromLastInsertedNode(detached);
+console.log(h);
+console.log(h.root===lastInsertedNode);
+console.log(h.root.left===left);
+console.log(left.parent===lastInsertedNode);
 
 module.exports = MaxHeap;
