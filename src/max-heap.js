@@ -126,8 +126,6 @@ class MaxHeap {
 }
 
 var h = new MaxHeap();
-h = new MaxHeap();
-
 h.push(42, 15);
 h.push(14, 32);
 h.push(0, 0);
