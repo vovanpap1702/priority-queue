@@ -39,6 +39,7 @@ class MaxHeap {
         for(var i=0;i<this.parentNodes.length;i++) {
             pn.push(this.parentNodes[i]);
         }
+        this.parentNodes=pn;
 		tmp.left=detached.left;
 		tmp.right=detached.right;
 		if(tmp.left!==null)
@@ -125,12 +126,19 @@ class MaxHeap {
 }
 
 var h = new MaxHeap();
+h = new MaxHeap();
+
 h.push(42, 15);
-h.push(15, 42);
+h.push(14, 32);
+h.push(0, 0);
+const root = h.root;
+const left = h.root.left;
+const lastInsertedNode = h.root.right;
 
-h.detachRoot();
+const detached = h.detachRoot();
+h.restoreRootFromLastInsertedNode(detached);
 
-console.log(h.parentNodes[0].data===42);
-console.log(h.parentNodes[0].priority===15);
-
+console.log(h.parentNodes.indexOf(root)===-1);
+console.log(h.parentNodes[0]===lastInsertedNode);
+console.log(h.parentNodes[1]===left);
 module.exports = MaxHeap;
