@@ -180,6 +180,7 @@ class MaxHeap {
                                             var t=this.parentNodes[i];
                                             this.parentNodes[i]=this.parentNodes[j];
                                             this.parentNodes[j]=t;
+                                            i=-1;
                                             break;
                                         }
                                     }
@@ -200,6 +201,7 @@ class MaxHeap {
                                             var t=this.parentNodes[i];
                                             this.parentNodes[i]=this.parentNodes[j];
                                             this.parentNodes[j]=t;
+                                            i=-1;
                                             break;
                                         }
                                     }
@@ -222,4 +224,36 @@ class MaxHeap {
         this.root=tmp;
 	}
 }
+var h = new MaxHeap();
+
+h.root = new Node(0, 3);
+h.root.appendChild(new Node(1, 20));
+h.root.appendChild(new Node(2, 7));
+h.root.left.appendChild(new Node(3, 5));
+
+/**
+ 3                        20
+ /  \                      /  \
+ 20    7  - shift down ->   5    7
+ /                          /
+ 5                          3
+ **/
+
+h.parentNodes = [
+    h.root.left,
+    h.root.right,
+    h.root.left.left,
+];
+const correctParentNodesOrderAfterShiftUp = [
+    h.root.left.left,
+    h.root.right,
+    h.root
+]
+
+h.shiftNodeDown(h.root);
+
+console.log(h.parentNodes[0]===correctParentNodesOrderAfterShiftUp[0]);
+console.log(h.parentNodes[1]===correctParentNodesOrderAfterShiftUp[1]);
+console.log(h.parentNodes[2]===correctParentNodesOrderAfterShiftUp[2]);
+
 module.exports = MaxHeap;
