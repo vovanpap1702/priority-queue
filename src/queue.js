@@ -25,13 +25,12 @@ class PriorityQueue {
 	}
 
 	shift() {
-	  /*if(this.isEmpty()) {
+	    if(this.isEmpty()) {
 	        throw new Error();
         }
         else {
-            this.ct--;
             return this.heap.pop();
-        }*/
+        }
 
 	}
 
@@ -50,9 +49,10 @@ const qWithDefaultMaxSize = new Queue();
 console.log(q.maxSize===10);
 console.log(qWithDefaultMaxSize.maxSize===30);
 */
-var q = new PriorityQueue(3);
+/*
+var q = new PriorityQueue();
 q.push(0, 1);
-q.push(1, 2);
-q.push(2, 3);
+console.log(q.shift()===0);
+*/
 
 module.exports = PriorityQueue;
