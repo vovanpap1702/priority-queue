@@ -55,5 +55,4 @@ q.push(0, 1);
 q.push(1, 2);
 q.push(2, 3);
 
-q.push(3, 4);
 module.exports = PriorityQueue;
