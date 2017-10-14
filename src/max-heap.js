@@ -222,7 +222,7 @@ class MaxHeap {
             this.root = tmp;
         }
 	}
-}
+}/*
 const h = new MaxHeap();
 h.push(42, 15);
 h.push(15, 14);
@@ -232,5 +232,5 @@ h.push(100, 100);
 console.log(h.pop()===100);
 console.log(h.pop()===0);
 console.log(h.pop()===42);
-console.log(h.pop()===15);
+console.log(h.pop()===15);*/
 module.exports = MaxHeap;
