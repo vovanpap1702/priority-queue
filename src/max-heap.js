@@ -18,10 +18,10 @@ class MaxHeap {
             var d = this.detachRoot();
             this.restoreRootFromLastInsertedNode(d);
             this.shiftNodeDown(this.root);
-            return d;
+            return d.data;
         }
         else {
-	        return null;
+	        return undefined;
         }
     }
 
@@ -42,7 +42,10 @@ class MaxHeap {
 		
 	}
 	restoreRootFromLastInsertedNode(detached) {
-
+        if(this.parentNodes.length===0) {
+            this.root = null;
+        }
+        else {
 	    var tmp=this.parentNodes.pop();
         var pn=[];
         pn.push(tmp);
@@ -68,6 +71,7 @@ class MaxHeap {
         }
         tmp.parent=null;
         this.root=tmp;
+        }
 
 		
 	}
@@ -129,88 +133,104 @@ class MaxHeap {
 
     }
 	shiftNodeDown(node) {
-        if (node.right !== null||node.left!==null) {
-            if (node.right===null) {
-                if(node.left.priority>node.priority) {
-                    for (var i=this.parentNodes.length-1;i>=0;i--) {
-                        if (node.left===this.parentNodes[i]) {
-                            var j;
-                            for(j=i-1;j>=0;j--) {
-                                if (node===this.parentNodes[j]) {
-                                    var t=this.parentNodes[i];
-                                    this.parentNodes[i]=this.parentNodes[j];
-                                    this.parentNodes[j]=t;
-                                    i=-1;
-                                    break;
+	    if(node!==null) {
+            if (node.right !== null || node.left !== null) {
+                if (node.right === null) {
+                    if (node.left.priority > node.priority) {
+                        for (var i = this.parentNodes.length - 1; i >= 0; i--) {
+                            if (node.left === this.parentNodes[i]) {
+                                var j;
+                                for (j = i - 1; j >= 0; j--) {
+                                    if (node === this.parentNodes[j]) {
+                                        var t = this.parentNodes[i];
+                                        this.parentNodes[i] = this.parentNodes[j];
+                                        this.parentNodes[j] = t;
+                                        i = -1;
+                                        break;
+                                    }
+                                }
+                                if (j === -1) {
+                                    this.parentNodes[i] = node;
                                 }
                             }
-                            if(j===-1) {
-                                this.parentNodes[i]=node;
+                        }
+                        node.left.swapWithParent();
+                    }
+                    else {
+                        return;
+                    }
+                }
+                else {
+                    if (node.left.priority > node.priority ||
+                        node.right.priority > node.priority) {
+                        if (node.left.priority > node.priority &&
+                            node.right.priority > node.priority) {
+                            if (node.left.priority > node.right.priority) {
+
+                                for (var i = this.parentNodes.length - 1; i >= 0; i--) {
+                                    if (node.left === this.parentNodes[i]) {
+                                        var j;
+                                        for (j = i - 1; j >= 0; j--) {
+                                            if (node === this.parentNodes[j]) {
+                                                var t = this.parentNodes[i];
+                                                this.parentNodes[i] = this.parentNodes[j];
+                                                this.parentNodes[j] = t;
+                                                i = -1;
+                                                break;
+                                            }
+                                        }
+                                        if (j === -1) {
+                                            this.parentNodes[i] = node;
+                                        }
+                                    }
+                                }
+                                node.left.swapWithParent();
+                            }
+                            else {
+
+                                for (var i = this.parentNodes.length - 1; i >= 0; i--) {
+                                    if (node.right === this.parentNodes[i]) {
+                                        var j;
+                                        for (j = i - 1; j >= 0; j--) {
+                                            if (node === this.parentNodes[j]) {
+                                                var t = this.parentNodes[i];
+                                                this.parentNodes[i] = this.parentNodes[j];
+                                                this.parentNodes[j] = t;
+                                                i = -1;
+                                                break;
+                                            }
+                                        }
+                                        if (j === -1) {
+                                            this.parentNodes[i] = node;
+                                        }
+                                    }
+                                }
+                                node.right.swapWithParent();
                             }
                         }
                     }
-                    node.left.swapWithParent();
-                }
-            }
-            else
-            {
-                if(node.left.priority>node.priority||
-                    node.right.priority>node.priority) {
-                    if(node.left.priority>node.priority&&
-                        node.right.priority>node.priority) {
-                        if(node.left.priority>node.right.priority) {
-
-                            for (var i=this.parentNodes.length-1;i>=0;i--) {
-                                if (node.left===this.parentNodes[i]) {
-                                    var j;
-                                    for(j=i-1;j>=0;j--) {
-                                        if (node===this.parentNodes[j]) {
-                                            var t=this.parentNodes[i];
-                                            this.parentNodes[i]=this.parentNodes[j];
-                                            this.parentNodes[j]=t;
-                                            i=-1;
-                                            break;
-                                        }
-                                    }
-                                    if(j===-1) {
-                                        this.parentNodes[i]=node;
-                                    }
-                                }
-                            }
-                            node.left.swapWithParent();
-                        }
-                        else {
-
-                            for (var i=this.parentNodes.length-1;i>=0;i--) {
-                                if (node.right===this.parentNodes[i]) {
-                                    var j;
-                                    for(j=i-1;j>=0;j--) {
-                                        if (node===this.parentNodes[j]) {
-                                            var t=this.parentNodes[i];
-                                            this.parentNodes[i]=this.parentNodes[j];
-                                            this.parentNodes[j]=t;
-                                            i=-1;
-                                            break;
-                                        }
-                                    }
-                                    if(j===-1) {
-                                        this.parentNodes[i]=node;
-                                    }
-                                }
-                            }
-                            node.right.swapWithParent();
-                        }
+                    else {
+                        return;
                     }
                 }
+                this.shiftNodeDown(node);
             }
-            this.shiftNodeDown(node);
+            var tmp = node;
+            while (tmp.parent !== null) {
+                tmp = tmp.parent;
+            }
+            this.root = tmp;
         }
-        var tmp=node;
-        while(tmp.parent!==null) {
-            tmp=tmp.parent;
-        }
-        this.root=tmp;
 	}
 }
+const h = new MaxHeap();
+h.push(42, 15);
+h.push(15, 14);
+h.push(0, 16);
+h.push(100, 100);
 
+console.log(h.pop()===100);
+console.log(h.pop()===0);
+console.log(h.pop()===42);
+console.log(h.pop()===15);
 module.exports = MaxHeap;
