@@ -20,9 +20,6 @@ class MaxHeap {
             this.shiftNodeDown(this.root);
             return d.data;
         }
-        else {
-	        return undefined;
-        }
     }
 
 	detachRoot() {
