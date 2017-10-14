@@ -14,7 +14,7 @@ class PriorityQueue {
 	}
 
 	push(data, priority) {
-	    if(this.heap.count<=this.maxSize) {
+	    if(this.heap.count<this.maxSize) {
             this.heap.push(data, priority);
         }
         else
@@ -50,5 +50,10 @@ const qWithDefaultMaxSize = new Queue();
 console.log(q.maxSize===10);
 console.log(qWithDefaultMaxSize.maxSize===30);
 */
+var q = new PriorityQueue(3);
+q.push(0, 1);
+q.push(1, 2);
+q.push(2, 3);
 
+q.push(3, 4);
 module.exports = PriorityQueue;
