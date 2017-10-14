@@ -15,8 +15,7 @@ class MaxHeap {
     }
 	pop() {
 	    if(this.count>0) {
-            var d = this.detachRoot();
-            this.restoreRootFromLastInsertedNode(d);
+            this.restoreRootFromLastInsertedNode(this.detachRoot());
             this.shiftNodeDown(this.root);
             return d.data;
         }
