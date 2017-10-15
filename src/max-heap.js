@@ -160,8 +160,7 @@ class MaxHeap {
                 else {
                     if (node.left.priority > node.priority ||
                         node.right.priority > node.priority) {
-                        if (node.left.priority > node.priority &&
-                            node.right.priority > node.priority) {
+
                             if (node.left.priority > node.right.priority) {
 
                                 for (var i = this.parentNodes.length - 1; i >= 0; i--) {
@@ -204,7 +203,7 @@ class MaxHeap {
                                 }
                                 node.right.swapWithParent();
                             }
-                        }
+                        
                     }
                     else {
                         return;
